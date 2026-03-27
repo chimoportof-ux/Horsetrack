@@ -24,7 +24,6 @@
                     <a href="{% url 'training_list' %}">Entrenamientos</a>
                     <a href="{% url 'event_list' %}">Eventos</a>
                     <a href="{% url 'calendar' %}">Calendario</a>
-                    <a href="{% url 'admin:index' %}">Admin</a>
                     <form method="post" action="{% url 'logout' %}" class="logout-form">
                         {% csrf_token %}
                         <button type="submit">Salir</button>
