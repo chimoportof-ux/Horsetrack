@@ -145,7 +145,7 @@ textarea { min-height: 120px; }
 }
 .logout-form { margin: 0; }
 @media (max-width: 720px) {
-  .section-title { flex-direction: column; align-items: flex-start; }
+  .section-title { flex-direction: column; align-items: center; }
 }
 .chart-grid {
   display: grid;
@@ -273,7 +273,6 @@ textarea { min-height: 120px; }
 }
 
 @media (max-width: 768px) {
-
   .nav {
     flex-direction: column;
     align-items: center;
