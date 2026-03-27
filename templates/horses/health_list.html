@@ -6,29 +6,31 @@
     <a href="{% url 'health_create' %}" class="btn-primary">Añadir registro</a>
 </div>
 <div class="card">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Caballo</th>
-                <th>Fecha</th>
-                <th>Tipo</th>
-                <th>Peso</th>
-                <th>Veterinario</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for record in records %}
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>{{ record.horse.name }}</td>
-                    <td>{{ record.date }}</td>
-                    <td>{{ record.get_issue_type_display }}</td>
-                    <td>{{ record.weight }}</td>
-                    <td>{{ record.veterinarian|default:'-' }}</td>
+                    <th>Caballo</th>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Peso</th>
+                    <th>Veterinario</th>
                 </tr>
-            {% empty %}
-                <tr><td colspan="5">No hay registros de salud.</td></tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                    <tr>
+                        <td>{{ record.horse.name }}</td>
+                        <td>{{ record.date }}</td>
+                        <td>{{ record.get_issue_type_display }}</td>
+                        <td>{{ record.weight }}</td>
+                        <td>{{ record.veterinarian|default:'-' }}</td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="5">No hay registros de salud.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}

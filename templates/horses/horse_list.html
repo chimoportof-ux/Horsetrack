@@ -7,28 +7,30 @@
 </div>
 <div class="card">
     {% if horses %}
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Raza</th>
-                    <th>Edad</th>
-                    <th>Peso</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for horse in horses %}
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>{{ horse.name }}</td>
-                        <td>{{ horse.breed }}</td>
-                        <td>{{ horse.age }}</td>
-                        <td>{{ horse.current_weight|default:'-' }}</td>
-                        <td><a href="{% url 'horse_detail' horse.pk %}">Ver</a></td>
+                        <th>Nombre</th>
+                        <th>Raza</th>
+                        <th>Edad</th>
+                        <th>Peso</th>
+                        <th></th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for horse in horses %}
+                        <tr>
+                            <td>{{ horse.name }}</td>
+                            <td>{{ horse.breed }}</td>
+                            <td>{{ horse.age }}</td>
+                            <td>{{ horse.current_weight|default:'-' }}</td>
+                            <td><a href="{% url 'horse_detail' horse.pk %}">Ver</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% else %}
         <p>No tienes caballos registrados.</p>
     {% endif %}

@@ -6,29 +6,31 @@
     <a href="{% url 'training_create' %}" class="btn-primary">Añadir entrenamiento</a>
 </div>
 <div class="card">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Caballo</th>
-                <th>Fecha</th>
-                <th>Tipo</th>
-                <th>Duración</th>
-                <th>Intensidad</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for training in trainings %}
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>{{ training.horse.name }}</td>
-                    <td>{{ training.date }}</td>
-                    <td>{{ training.get_training_type_display }}</td>
-                    <td>{{ training.duration }} min</td>
-                    <td>{{ training.intensity|default:'-' }}</td>
+                    <th>Caballo</th>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Duración</th>
+                    <th>Intensidad</th>
                 </tr>
-            {% empty %}
-                <tr><td colspan="5">No hay entrenamientos.</td></tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for training in trainings %}
+                    <tr>
+                        <td>{{ training.horse.name }}</td>
+                        <td>{{ training.date }}</td>
+                        <td>{{ training.get_training_type_display }}</td>
+                        <td>{{ training.duration }} min</td>
+                        <td>{{ training.intensity|default:'-' }}</td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="5">No hay entrenamientos.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}
