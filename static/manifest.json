@@ -1,0 +1,21 @@
+{
+  "name": "HorseTrack",
+  "short_name": "HorseTrack",
+  "description": "Aplicación de gestión de caballos, salud, entrenamientos y eventos.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#0d6efd",
+  "icons": [
+    {
+      "src": "/staticfiles/admin/img/caballo-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/admin/img/caballo-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
