@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Eventos{% endblock %}
+{% block content %}
+<div class="section-title">
+    <h1>Eventos</h1>
+    <a href="{% url 'event_create' %}" class="btn-primary">Añadir evento</a>
+</div>
+<div class="card">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Caballo</th>
+                <th>Fecha</th>
+                <th>Tipo</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+                <tr>
+                    <td>{{ event.horse.name }}</td>
+                    <td>{{ event.date }}</td>
+                    <td>{{ event.get_event_type_display }}</td>
+                    <td>
+                        <form method="post" action="{% url 'event_toggle_completed' event.pk %}" class="inline-toggle-form">
+                            {% csrf_token %}
+                            <label class="checkbox-inline">
+                                <input
+                                    type="checkbox"
+                                    name="completed"
+                                    onchange="this.form.submit()"
+                                    {% if event.completed %}checked{% endif %}
+                                >
+                                <span>{% if event.completed %}Completado{% else %}Pendiente{% endif %}</span>
+                             </label>
+                         </form>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="4">No hay eventos.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

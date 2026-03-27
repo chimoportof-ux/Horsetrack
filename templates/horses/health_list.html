@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Salud{% endblock %}
+{% block content %}
+<div class="section-title">
+    <h1>Registros de salud</h1>
+    <a href="{% url 'health_create' %}" class="btn-primary">Añadir registro</a>
+</div>
+<div class="card">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Caballo</th>
+                <th>Fecha</th>
+                <th>Tipo</th>
+                <th>Peso</th>
+                <th>Veterinario</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+                <tr>
+                    <td>{{ record.horse.name }}</td>
+                    <td>{{ record.date }}</td>
+                    <td>{{ record.get_issue_type_display }}</td>
+                    <td>{{ record.weight }}</td>
+                    <td>{{ record.veterinarian|default:'-' }}</td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="5">No hay registros de salud.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

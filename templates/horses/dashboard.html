@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}HorseTrack{% endblock %}
+{% block content %}
+<div class="page-head">
+    <h1>Panel principal</h1>
+    <p>Resumen general de tu cuadra y próximos cuidados.</p>
+</div>
+
+<div class="stats-grid">
+    <div class="card stat-card"><h3>Caballos</h3><p>{{ stats.horse_count }}</p></div>
+    <div class="card stat-card"><h3>Entrenamientos</h3><p>{{ stats.training_count }}</p></div>
+    <div class="card stat-card"><h3>Registros de salud</h3><p>{{ stats.health_count }}</p></div>
+    <div class="card stat-card"><h3>Eventos pendientes</h3><p>{{ stats.pending_events }}</p></div>
+</div>
+
+<div class="grid-2">
+    <section class="card">
+        <div class="section-title">
+            <h2>Próximos eventos</h2>
+            <a href="{% url 'event_create' %}" class="btn-primary">Nuevo evento</a>
+        </div>
+        {% if upcoming_events %}
+            <ul class="simple-list">
+                {% for event in upcoming_events %}
+                    <li><strong>{{ event.horse.name }}</strong> · {{ event.get_event_type_display }} · {{ event.date }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay próximos eventos registrados.</p>
+        {% endif %}
+    </section>
+
+    <section class="card">
+        <div class="section-title">
+            <h2>Tus caballos</h2>
+            <a href="{% url 'horse_create' %}" class="btn-primary">Nuevo caballo</a>
+        </div>
+        {% if horses %}
+            <ul class="simple-list">
+                {% for horse in horses %}
+                    <li><a href="{% url 'horse_detail' horse.pk %}">{{ horse.name }}</a> · {{ horse.breed }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aún no has creado caballos.</p>
+        {% endif %}
+    </section>
+</div>
+
+<div class="grid-2">
+    <section class="card">
+        <div class="section-title">
+            <h2>Últimos entrenamientos</h2>
+            <a href="{% url 'training_create' %}" class="btn-primary">Nuevo entrenamiento</a>
+        </div>
+        {% if recent_trainings %}
+            <ul class="simple-list">
+                {% for training in recent_trainings %}
+                    <li><strong>{{ training.horse.name }}</strong> · {{ training.get_training_type_display }} · {{ training.duration }} min</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay entrenamientos registrados.</p>
+        {% endif %}
+    </section>
+
+    <section class="card">
+        <div class="section-title">
+            <h2>Últimos registros de salud</h2>
+            <a href="{% url 'health_create' %}" class="btn-primary">Nuevo registro</a>
+        </div>
+        {% if recent_health_records %}
+            <ul class="simple-list">
+                {% for record in recent_health_records %}
+                    <li><strong>{{ record.horse.name }}</strong> · {{ record.get_issue_type_display }} · {{ record.weight }} kg</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay registros de salud aún.</p>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}

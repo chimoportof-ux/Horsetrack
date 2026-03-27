@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Caballos{% endblock %}
+{% block content %}
+<div class="section-title">
+    <h1>Caballos</h1>
+    <a href="{% url 'horse_create' %}" class="btn-primary">Añadir caballo</a>
+</div>
+<div class="card">
+    {% if horses %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Raza</th>
+                    <th>Edad</th>
+                    <th>Peso</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for horse in horses %}
+                    <tr>
+                        <td>{{ horse.name }}</td>
+                        <td>{{ horse.breed }}</td>
+                        <td>{{ horse.age }}</td>
+                        <td>{{ horse.current_weight|default:'-' }}</td>
+                        <td><a href="{% url 'horse_detail' horse.pk %}">Ver</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No tienes caballos registrados.</p>
+    {% endif %}
+</div>
+{% endblock %}

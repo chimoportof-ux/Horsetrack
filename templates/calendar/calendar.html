@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Calendario{% endblock %}
+
+{% block content %}
+<div class="section-title">
+    <h1>Calendario</h1>
+</div>
+
+<section class="card">
+    <div id="calendar"></div>
+
+    <div class="calendar-legend">
+        <h3>Leyenda</h3>
+        <div class="legend-items">
+            <div class="legend-item">
+                <span class="legend-color legend-event"></span>
+                <span>Eventos</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color legend-training"></span>
+                <span>Entrenamientos</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color legend-health"></span>
+                <span>Registros de salud</span>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/locales-all.global.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const calendarEl = document.getElementById('calendar');
+
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'es',
+        height: 'auto',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,listWeek'
+        },
+        events: '{% url "calendar_events_json" %}'
+    });
+
+    calendar.render();
+});
+</script>
+{% endblock %}
