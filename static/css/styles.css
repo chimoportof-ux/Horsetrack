@@ -274,6 +274,12 @@ textarea { min-height: 120px; }
 }
 
 @media (max-width: 768px) {
+
+  .main-nav a:hover {
+    background-color: var(--bg);
+    color: rgb(0, 0, 0);
+  }
+
   .table {
     min-width: 600px;
   }
